@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WolfLoom Control Panel</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 600px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 28px;
+            margin-bottom: 5px;
+        }
+        
+        .header p {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        
+        .content {
+            padding: 30px;
+        }
+        
+        .section {
+            margin-bottom: 30px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .section:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        .section-title {
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #667eea;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        
+        .status-box {
+            background: #f8f9fa;
+            border-left: 4px solid #667eea;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 4px;
+        }
+        
+        .status-box h3 {
+            color: #333;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+        
+        .status-value {
+            color: #667eea;
+            font-size: 18px;
+            font-weight: 600;
+            word-break: break-all;
+        }
+        
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 0;
+        }
+        
+        .info-grid .status-box {
+            margin-bottom: 0;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 500;
+            font-size: 14px;
+        }
+        
+        input, select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+        
+        input:focus, select:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+        
+        .button-row {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        button {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .btn-primary {
+            background: #667eea;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #5568d3;
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.2);
+        }
+        
+        .btn-primary:active {
+            transform: scale(0.98);
+        }
+        
+        .btn-secondary {
+            background: #764ba2;
+            color: white;
+        }
+        
+        .btn-secondary:hover {
+            background: #63398a;
+            box-shadow: 0 10px 20px rgba(118, 75, 162, 0.2);
+        }
+        
+        .btn-danger {
+            background: #dc3545;
+            color: white;
+        }
+        
+        .btn-danger:hover {
+            background: #c82333;
+        }
+        
+        .btn-reset {
+            background: #f0f0f0;
+            color: #333;
+        }
+        
+        .btn-reset:hover {
+            background: #e0e0e0;
+        }
+        
+        .status-message {
+            padding: 12px;
+            border-radius: 6px;
+            margin-top: 15px;
+            font-size: 13px;
+            display: none;
+        }
+        
+        .status-message.success {
+            background: #d4edda;
+            color: #155724;
+            display: block;
+        }
+        
+        .status-message.error {
+            background: #f8d7da;
+            color: #721c24;
+            display: block;
+        }
+        
+        .dns-access-info {
+            background: #e7f3ff;
+            border-left: 4px solid #2196F3;
+            padding: 15px;
+            border-radius: 4px;
+            margin-top: 15px;
+            display: none;
+        }
+        
+        .dns-access-info.inactive {
+            background: #f5f5f5;
+            border-left-color: #ccc;
+            opacity: 0.7;
+        }
+        
+        .dns-access-info h4 {
+            color: #1976D2;
+            font-size: 13px;
+            margin-bottom: 10px;
+        }
+        
+        .dns-access-info.inactive h4 {
+            color: #666;
+        }
+        
+        .dns-access-info p {
+            color: #0d47a1;
+            font-size: 13px;
+            margin-bottom: 5px;
+            word-break: break-all;
+        }
+        
+        .dns-access-info.inactive p {
+            color: #666;
+        }
+        
+        .dns-access-info code {
+            background: rgba(25, 118, 210, 0.1);
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: monospace;
+        }
+        
+        .dns-access-info.inactive code {
+            background: #ddd;
+        }
+        
+        .tips {
+            margin-top: 25px;
+            padding-top: 25px;
+            border-top: 1px solid #e0e0e0;
+            font-size: 12px;
+            color: #999;
+        }
+        
+        .tips p {
+            margin-bottom: 8px;
+        }
+        
+        .tips ul {
+            margin-left: 20px;
+            line-height: 1.6;
+        }
+        
+        .tips li {
+            margin-bottom: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🐺 WolfLoom</h1>
+            <p>Server Control Panel</p>
+        </div>
+        
+        <div class="content">
+            <!-- Status Section -->
+            <div class="section">
+                <div class="section-title">Status</div>
+                <div class="info-grid">
+                    <div class="status-box">
+                        <h3>Machine IP</h3>
+                        <div class="status-value" id="machine-ip">Loading...</div>
+                    </div>
+                    <div class="status-box">
+                        <h3>Server Status</h3>
+                        <div class="status-value" id="server-status">Running ✓</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Config Section -->
+            <div class="section">
+                <div class="section-title">Server Configuration</div>
+                <form id="config-form">
+                    <div class="form-group">
+                        <label for="port">Port</label>
+                        <input type="number" id="port" placeholder="5000" min="1" max="65535" value="5000">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="bind-host">Bind Host (0.0.0.0 for all interfaces)</label>
+                        <input type="text" id="bind-host" placeholder="0.0.0.0" value="">
+                    </div>
+                    
+                    <div class="button-row">
+                        <button type="submit" class="btn-primary">Save Configuration</button>
+                        <button type="reset" class="btn-reset">Reset</button>
+                    </div>
+                    
+                    <div class="status-message" id="config-status-msg"></div>
+                </form>
+            </div>
+            
+            <!-- DNS Section -->
+            <div class="section">
+                <div class="section-title">Custom Hostname (DNS)</div>
+                <form id="dns-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="hostname">Hostname</label>
+                            <input type="text" id="hostname" placeholder="e.g., myserver" value="" maxlength="63">
+                        </div>
+                        <div class="form-group">
+                            <label for="tld">Domain</label>
+                            <select id="tld">
+                                <option value=".local">.local</option>
+                                <option value=".test">.test</option>
+                                <option value=".dev">.dev</option>
+                                <option value=".home">.home</option>
+                                <option value=".lan">.lan</option>
+                                <option value=".localhost">.localhost</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="button-row" id="dns-buttons">
+                        <button type="submit" class="btn-secondary">Launch Custom DNS</button>
+                        <button type="button" id="stop-dns" class="btn-danger" style="display: none;">Stop DNS</button>
+                    </div>
+                    
+                    <div class="status-message" id="dns-status-msg"></div>
+                    <div class="dns-access-info" id="dns-access-info">
+                        <h4>Access Your Server:</h4>
+                        <p>In your browser, visit: <code id="dns-url"></code></p>
+                        <p style="margin-top: 10px; font-size: 12px;">Or from another device on your network: <code id="dns-url-network"></code></p>
+                    </div>
+                </form>
+            </div>
+            
+            <div class="tips">
+                <p><strong>💡 Tips:</strong></p>
+                <ul>
+                    <li>Custom hostname allows access from other devices on your network</li>
+                    <li>The DNS server runs locally on your machine</li>
+                    <li>Restart the server for port/bind host changes to take effect</li>
+                    <li>Access the server at: <strong>http://your-ip:5000</strong> or <strong>http://hostname:5000</strong></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        const configForm = document.getElementById('config-form');
+        const dnsForm = document.getElementById('dns-form');
+        
+        const portInput = document.getElementById('port');
+        const bindHostInput = document.getElementById('bind-host');
+        const hostnameInput = document.getElementById('hostname');
+        const tldInput = document.getElementById('tld');
+        
+        const machineIpEl = document.getElementById('machine-ip');
+        const configStatusMsg = document.getElementById('config-status-msg');
+        const dnsStatusMsg = document.getElementById('dns-status-msg');
+        const stopDnsBtn = document.getElementById('stop-dns');
+        const dnsAccessInfo = document.getElementById('dns-access-info');
+        const dnsUrlEl = document.getElementById('dns-url');
+        const dnsUrlNetworkEl = document.getElementById('dns-url-network');
+        
+        // Initialize window variables
+        window.lastDnsHostname = '';
+        window.lastDnsIp = '';
+        
+        // Load current config on page load
+        async function loadConfig() {
+            try {
+                const response = await fetch('/api/config');
+                const config = await response.json();
+                
+                const dnsHostnameFromConfig = config.dns_hostname || '';
+                const dnsIpFromConfig = config.dns_ip || config.machine_ip || '';
+                
+                portInput.value = config.port || 5000;
+                bindHostInput.value = config.host || '';
+                machineIpEl.textContent = config.machine_ip || 'Unknown';
+                
+                // Store DNS config for later use
+                window.lastDnsHostname = dnsHostnameFromConfig;
+                window.lastDnsIp = dnsIpFromConfig;
+                
+                // If hostname was previously configured, show it
+                if (dnsHostnameFromConfig) {
+                    updateDnsAccessInfo(dnsHostnameFromConfig, dnsIpFromConfig, false);
+                }
+            } catch (error) {
+                console.error('Failed to load config:', error);
+            }
+        }
+        
+        // Load DNS status
+        async function loadDnsStatus() {
+            try {
+                const response = await fetch('/api/dns/status');
+                const status = await response.json();
+                
+                if (status.hostname) {
+                    if (status.running) {
+                        showDnsActive(status.hostname, status.ip);
+                    } else {
+                        showDnsInactive(status.hostname, status.ip);
+                    }
+                } else if (window.lastDnsHostname) {
+                    // No active DNS status but we have a stored hostname
+                    showDnsInactive(window.lastDnsHostname, window.lastDnsIp);
+                }
+            } catch (error) {
+                console.error('Failed to load DNS status:', error);
+            }
+        }
+        
+        // Save configuration
+        configForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const config = {
+                port: parseInt(portInput.value) || 5000,
+                host: bindHostInput.value.trim()
+            };
+            
+            try {
+                const response = await fetch('/api/config', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(config)
+                });
+                
+                if (response.ok) {
+                    showStatus(configStatusMsg, 'Configuration saved! Restart the server for changes to take effect.', 'success');
+                } else {
+                    const error = await response.json();
+                    showStatus(configStatusMsg, 'Error: ' + (error.error || 'Failed to save'), 'error');
+                }
+            } catch (error) {
+                console.error('Save failed:', error);
+                showStatus(configStatusMsg, 'Network error: ' + error.message, 'error');
+            }
+        });
+        
+        // Start DNS server
+        dnsForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const hostname = hostnameInput.value.trim();
+            const tld = tldInput.value;
+            
+            if (!hostname) {
+                showStatus(dnsStatusMsg, 'Please enter a hostname', 'error');
+                return;
+            }
+            
+            try {
+                const response = await fetch('/api/dns/start', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        hostname: hostname,
+                        tld: tld
+                    })
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok) {
+                    showStatus(dnsStatusMsg, `DNS configured for ${data.hostname}`, 'success');
+                    window.lastDnsHostname = data.hostname;
+                    window.lastDnsIp = data.ip;
+                    showDnsActive(data.hostname, data.ip);
+                } else {
+                    showStatus(dnsStatusMsg, 'Error: ' + (data.error || 'Failed to start DNS'), 'error');
+                }
+            } catch (error) {
+                console.error('DNS start failed:', error);
+                showStatus(dnsStatusMsg, 'Network error: ' + error.message, 'error');
+            }
+        });
+        
+        // Stop DNS server
+        stopDnsBtn.addEventListener('click', async () => {
+            try {
+                const response = await fetch('/api/dns/stop', {
+                    method: 'POST'
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok) {
+                    showStatus(dnsStatusMsg, 'DNS server stopped', 'success');
+                    if (window.lastDnsHostname) {
+                        showDnsInactive(window.lastDnsHostname, window.lastDnsIp);
+                    } else {
+                        showDnsInactive();
+                    }
+                } else {
+                    showStatus(dnsStatusMsg, 'Error: ' + (data.error || 'Failed to stop DNS'), 'error');
+                }
+            } catch (error) {
+                console.error('DNS stop failed:', error);
+                showStatus(dnsStatusMsg, 'Network error: ' + error.message, 'error');
+            }
+        });
+        
+        function showStatus(element, message, type) {
+            element.textContent = message;
+            element.className = 'status-message ' + type;
+            if (type === 'success') {
+                setTimeout(() => {
+                    element.className = 'status-message';
+                }, 4000);
+            }
+        }
+        
+        function updateDnsAccessInfo(hostname, ip, isRunning) {
+            const port = portInput.value || '5000';
+            dnsUrlEl.textContent = `http://${hostname}:${port}`;
+            dnsUrlNetworkEl.textContent = `http://${hostname}:${port}`;
+            
+            dnsAccessInfo.display = 'block';
+            dnsAccessInfo.style.display = 'block';
+            
+            if (isRunning) {
+                dnsAccessInfo.classList.remove('inactive');
+                dnsAccessInfo.querySelector('h4').textContent = 'Access Your Server (DNS Running):';
+            } else {
+                dnsAccessInfo.classList.add('inactive');
+                dnsAccessInfo.querySelector('h4').textContent = 'Last Configured Hostname (DNS Stopped):';
+            }
+        }
+        
+        function showDnsActive(hostname, ip) {
+            dnsForm.style.display = 'none';
+            stopDnsBtn.style.display = 'block';
+            updateDnsAccessInfo(hostname, ip, true);
+        }
+        
+        function showDnsInactive(hostname, ip) {
+            dnsForm.style.display = 'block';
+            stopDnsBtn.style.display = 'none';
+            
+            // Try to pre-fill the form with last config
+            if (hostname) {
+                const parts = hostname.split('.');
+                if (parts.length >= 2) {
+                    const tld = '.' + parts.slice(-1)[0];
+                    const name = parts.slice(0, -1).join('.');
+                    hostnameInput.value = name;
+                    
+                    // Try to select the matching TLD
+                    for (let option of tldInput.options) {
+                        if (option.value === tld) {
+                            tldInput.value = tld;
+                            break;
+                        }
+                    }
+                }
+                updateDnsAccessInfo(hostname, ip, false);
+            } else {
+                dnsAccessInfo.style.display = 'none';
+            }
+        }
+        
+        // Initialize
+        loadConfig();
+        loadDnsStatus();
+    </script>
+</body>
+</html>
