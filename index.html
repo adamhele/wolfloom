@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>WolfLoom – Simple Home Server for Everyone</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- SEO meta -->
+  <meta name="description" content="WolfLoom is a free, open‑source home server designed for beginners." />
+  <meta name="keywords" content="WolfLoom, GitHub, home server, simple home server, self-hosted, open source, personal server, free, beginner friendly server, Python Flask server" />
+  <meta name="author" content="WolfLoom" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="WolfLoom – Simple Home Server for Everyone" />
+  <meta property="og:description" content="A free, open-source home server designed for non-technical people. Install in minutes and access your own private hub." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://adamhele.github.io/wolfloom/" />
+  <meta property="og:image" content="https://adamhele.github.io/wolfloom/wolfloom.png" />
+  <meta property="og:site_name" content="WolfLoom" />
+  <meta property="og:locale" content="en_GB" />
+  <meta property="og:locale:alternate" content="en_US" />
+  <meta property="og:image:alt" content="WolfLoom home server logo" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image:alt" content="WolfLoom home server logo" />
+  <meta name="twitter:title" content="WolfLoom – Simple Home Server for Everyone" />
+  <meta name="twitter:description" content="Free, open-source, beginner-friendly home server. Works on Windows, Linux, and Android (via Python)." />
+  <meta name="twitter:image" content="https://adamhele.github.io/wolfloom/wolfloom.png" />
+
+  <!-- AI / semantic SEO: structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "WolfLoom",
+    "operatingSystem": "Windows, Linux, Android (via Python)",
+    "applicationCategory": "ServerApplication",
+    "description": "WolfLoom is a free, open-source, ultra-simple home server designed for non-technical users.",
+    "softwareVersion": "latest",
+    "license": "https://github.com/adamhele/wolfloom/blob/main/LICENSE",
+    "featureList": [
+	  "Runs on Windows, Linux, and Android",
+	  "Beginner-friendly installation",
+	  "Local-only, privacy-first design",
+	  "Open-source Python Flask server"
+	]
+    "author": {
+      "@type": "Organization",
+      "name": "WolfLoom"
+    },
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "GBP"
+    },
+    "url": "https://adamhele.github.io/wolfloom/",
+    "downloadUrl": "https://github.com/adamhele/wolfloom/archive/refs/heads/main.zip",
+    "isAccessibleForFree": true
+  }
+  </script>
+
+  <!-- FAQ schema for AI SEO -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is WolfLoom?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "WolfLoom is a free, open-source home server designed to be extremely simple to install and use, even for people who are not very technical."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Which operating systems does WolfLoom support?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "WolfLoom supports most python compatible devices."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I access WolfLoom after installing it?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Once WolfLoom is running, open your browser and visit http://0.0.0.0:5000/ from the device running the server. Or, on other devices type the local IP:5000 of the host device."
+        }
+      }
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+	{
+	  "@context": "https://schema.org",
+	  "@type": "Organization",
+	  "name": "WolfLoom",
+	  "url": "https://adamhele.github.io/wolfloom/",
+	  "logo": "https://adamhele.github.io/wolfloom/wolfloom.png",
+	  "sameAs": [
+		"https://github.com/adamhele/wolfloom"
+	  ]
+	}
+	</script>
+	<script type="application/ld+json">
+	{
+	  "@context": "https://schema.org",
+	  "@type": "WebSite",
+	  "name": "WolfLoom",
+	  "url": "https://adamhele.github.io/wolfloom/",
+	  "potentialAction": {
+		"@type": "SearchAction",
+		"target": "https://adamhele.github.io/wolfloom/?q={search_term_string}",
+		"query-input": "required name=search_term_string"
+	  }
+	}
+	</script>
+	<script type="application/ld+json">
+	{
+	  "@context": "https://schema.org",
+	  "@type": "WebPage",
+	  "name": "WolfLoom – Simple Home Server",
+	  "url": "https://adamhele.github.io/wolfloom/",
+	  "description": "WolfLoom is a free, open-source home server designed for beginners.",
+	  "isPartOf": {
+		"@type": "WebSite",
+		"url": "https://adamhele.github.io/wolfloom/"
+	  }
+	}
+	</script>
+	<script type="application/ld+json">
+	{
+	  "@context": "https://schema.org",
+	  "@type": "HowTo",
+	  "name": "How to Install WolfLoom",
+	  "description": "Step-by-step instructions for installing WolfLoom on Windows.",
+	  "step": [
+		{
+		  "@type": "HowToStep",
+		  "name": "Download WolfLoom",
+		  "text": "Download the latest WolfLoom release from GitHub."
+		},
+		{
+		  "@type": "HowToStep",
+		  "name": "Run host.py",
+		  "text": "Open the host.py file to start the server."
+		},
+		{
+		  "@type": "HowToStep",
+		  "name": "Open",
+		  "text": "Visit http://0.0.0.0:5000/ in your browser. Or local IP:5000 on other devices"
+		}
+	  ]
+	}
+	</script>
+	<script src="https://unpkg.com/lucide@latest"></script>
+	<script src="https://cdn.jsdelivr.net/npm/canvas-confetti"></script>
+
+
+  <link rel="canonical" href="https://wolfloom.github.io/" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap" rel="stylesheet" />
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="wolfloom.png" type="image/png" />
+</head>
+<body>
+	<div class="marquee-container">
+	  <div class="marquee-track">
+	  	<strong>
+		<span class="marquee-text">
+		  The security of the server requires on the security of the network it is hosted on.
+		  By running the server on an untrusted network you may be putting your device at risk!
+		</span>
+		<span class="marquee-text">
+		  The security of the server relies on the security of the network and device it is hosted on.
+		  By running the server on an untrusted network you may be putting your device at risk!
+		</span>
+	  </div>
+	  </strong>
+	</div>
+
+  <header class="site-header">
+    <div class="logo-title">
+      <img src="largewolfloom.png" alt="WolfLoom logo" class="logo" />
+      <div>
+        <h1 class="site-title">WolfLoom</h1>
+        <p class="site-tagline">Your super simple home server – free, open source, and beginner friendly.</p>
+      </div>
+    </div>
+	<nav class="main-nav">
+	  <input type="checkbox" id="menu-toggle">
+	  <label for="menu-toggle" class="menu-icon">
+		  <span></span>
+		  <span></span>
+		  <span></span>
+	  </label>
+	  <div class="menu">
+		<a href="#download">Download</a>
+		<a href="#install">Installation</a>
+		<a href="partners">Partners</a>
+		<a href="#features">Features</a>
+		<a href="#faq">FAQ</a>
+		<a href="https://github.com/adamhele/wolfloom" target="_blank" rel="noopener">GitHub</a>
+	  </div>
+	</nav>
+  </header>
+
+  <main>
+    <section class="hero" id="top">
+    <section id="download">
+      <div class="hero-content">
+        <h2 class="hero-title">Turn any device into a tiny home server in minutes.</h2>
+        <p class="hero-subtitle">
+          WolfLoom is designed for people who don’t want to fight with complicated setups.
+          Follow a few simple steps, open your browser at <a href="http://0.0.0.0:5000/"><strong>http://0.0.0.0:5000/</strong></a>,
+          and your personal home server is ready.
+        </p>
+
+        <div class="hero-actions">
+          <button class="download-main-btn" id="downloadToggle">
+            <span class="download-main-label">Download WolfLoom</span>
+            <span class="download-main-sub">wolfloom.zip</span>
+          </button>
+          </section>
+
+          <div class="download-panel" id="downloadPanel">
+            <a class="download-option" href="https://github.com/adamhele/wolfloom/archive/refs/heads/main.zip">
+              <i data-lucide="folder-archive"></i>
+              <div>
+                <span class="download-os">ZIP file</span>
+                <span class="download-desc">Download the ready-made archive (ZIP).</span>
+              </div>
+            </a>
+          </div>
+          <p class="hero-note">
+            WolfLoom is <strong>free</strong> and <strong>open source</strong>.
+            View the code on
+            <a href="https://github.com/adamhele/wolfloom" target="_blank" rel="noopener">GitHub</a>.
+          </p>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="hero-card">
+          <h3>What you get</h3>
+          <ul>
+            <li>A tiny home server you control.</li>
+            <li>Runs on your own hardware.</li>
+            <li>Simple web interface in your browser.</li>
+            <li>No subscription, no tracking.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    <section class="section" id="install">
+      <h2 class="section-title">Installation guide</h2>
+      <p class="section-intro">
+        WolfLoom is intentionally simple. Even if you are not very technical, you can follow these steps.
+        Choose your operating system below and follow the instructions carefully.
+      </p>
+
+      <div class="tabs">
+        <div class="tab-list" role="tablist">
+          <button class="tab-button active" data-tab="windows" role="tab" aria-selected="true">
+            <img src="images/file.png" alt="File icon" />
+            <span>ZIP file</span>
+          </button>
+        </div>
+
+        <div class="tab-panels">
+          <div class="tab-panel active" id="tab-main" role="tabpanel">
+            <h3>Install WolfLoom nearly anywhere</h3>
+            <ol class="steps-list">
+              <li>
+                <strong>Install WolfLoom</strong><br />
+                Download the latest version from <a href="https://github.com/adamhele/wolfloom/archive/refs/heads/main.zip">here</a> to your device.
+              </li>
+              <li>
+                <strong>Install Python</strong><br />
+                Download the latest Python version from <a href="https://www.python.org/downloads/">here</a> to your device.
+              </li>
+              <li>
+                <strong>Extract WolfLoom</strong><br />
+                Find the ZIP in File Explorer and double click it to extract.
+              </li>
+              <li>
+                <strong>Run WolfLoom</strong><br />
+                Find the <code>host.py</code>in File Explorer and double click it to run.
+              </li>
+              <li>
+                <strong>Visit WolfLoom in your browser</strong><br />
+                Open your web browser (Chrome, Firefox etc.) and go to:
+                <a href = "http://0.0.0.0:5000/" ><code>http://0.0.0.0:5000/</code></a><br />
+                You should now see the WolfLoom home server interface.
+              </li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="section" id="features">
+      <h2 class="section-title">Why WolfLoom is different</h2>
+      <p class="section-intro">
+        WolfLoom is built for people who want the benefits of a home server without the usual complexity.
+        You do not need to understand networking, servers, or command-line tools in depth.
+        I hope this makes it as easy as possible for people to run WolfLoom.
+      </p>
+
+      <div class="feature-grid">
+        <article class="feature-card">
+          <h3>Made for non‑technical users</h3>
+          <p>
+            Every step is written in plain language. Instead of assuming you know how servers work,
+            this website walks you through exactly what to click, what to type, and what to expect.
+          </p>
+        </article>
+
+        <article class="feature-card">
+          <h3>Runs in your browser</h3>
+          <p>
+            Once WolfLoom is running, you simply open your browser and visit
+            <a href = "http://0.0.0.0:5000/"><code>http://0.0.0.0:5000/</code></a>. There is no confusing app to learn — just a clean web interface.
+          </p>
+        </article>
+
+        <article class="feature-card">
+          <h3>Free and open source</h3>
+          <p>
+            WolfLoom is completely free. The source code is available on
+            <a href="https://github.com/adamhele/wolfloom" target="_blank" rel="noopener">GitHub</a>,
+            so anyone can inspect it, improve it, or adapt it.
+          </p>
+        </article>
+
+        <article class="feature-card">
+          <h3>Lightweight and private</h3>
+          <p>
+            WolfLoom runs on your own hardware. Your data stays with you.
+            There are no subscriptions, no tracking, and no hidden cloud services.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section" id="faq">
+      <h2 class="section-title">Frequently asked questions</h2>
+
+      <div class="faq-list">
+        <details class="faq-item">
+          <summary>Do I need to be technical to use WolfLoom?</summary>
+          <p>
+            No. WolfLoom is specifically designed for people who are not very tech savvy, as well as those who are tech savvy but just want a quick server to set up. If you wanted, you could add more features to your own private version by downloading and editing the python code to make custom features just for you!
+            The instructions are step-by-step and written in everyday language to be as accessible as possible.
+          </p>
+        </details>
+
+        <details class="faq-item">
+          <summary>Do I need a fast computer to run Wolfloom</summary>
+          <p>
+            No. WolfLoom is meant to be as easy to run as possible. This means you can run it on old devices you have lying around your house.
+          </p>
+        </details>
+
+        <details class="faq-item">
+          <summary>Is WolfLoom really free?</summary>
+          <p>
+            Yes. WolfLoom is free and open source. You can use it, share it, and even modify it
+            as long as you follow the license terms in the
+            <a href="https://github.com/adamhele/wolfloom/blob/main/LICENSE" target="_blank" rel="noopener">LICENSE</a>.
+          </p>
+        </details>
+
+        <details class="faq-item">
+          <summary>What happens if I close the WolfLoom window or terminal?</summary>
+          <p>
+            WolfLoom runs as long as the terminal window is open.
+            If you close it, the server stops. To use it again, just run the program or command again.
+            Please don't close the window or terminal window to stop it however, as this may break it, press <code> CTRL + C </code> in the terminal to safely end to program before closing it.
+          </p>
+        </details>
+
+        <details class="faq-item">
+          <summary>Can I access WolfLoom from other devices on my network?</summary>
+          <p>
+            Yes, you can. Instead of <code>0.0.0.0</code>, you would use the local IP address
+            of the device running WolfLoom. For example, <code>http://192.168.0.1:5000/</code>.
+            This depends on how you configured it in the app.
+          </p>
+        </details>
+      </div>
+    </section>
+			<div id="downloadWarning" class="popup-overlay">
+			  <div class="popup-box">
+				<h2>Before You Download</h2>
+				<p>
+				  By continuing, you agree that you may be putting your device at risk by
+				  running the software on an untrusted network.
+				</p>
+
+				<div class="popup-buttons">
+				  <button id="cancelDownload">Cancel</button>
+				  <a id="confirmDownload" class="confirm-btn" href="#" download>Accept & Download</a>
+				</div>
+			  </div>
+			</div>
+  </main>
+
+  <div style="bottom:15px; left:15px; position:fixed;">
+    <button id="compatibilityBtn" class="compatibility-btn">
+      <svg id="statusIcon" class="icon" viewBox="0 0 24 24"></svg>
+      <span id="statusText" class="status-text">Checking compatibility...</span>
+    </button>
+  </div>
+
+  <footer class="site-footer">
+    <p>
+      WolfLoom is a free, open-source project by
+      <a href="https://github.com/adamhele" target="_blank" rel="noopener">Adam Hele</a>.
+      View the repository:
+      <a href="https://github.com/adamhele/wolfloom" target="_blank" rel="noopener">
+        github.com/adamhele/wolfloom
+      </a>
+    </p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
